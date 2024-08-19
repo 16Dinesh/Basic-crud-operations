@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/posts">Social Media Posts</a>
+        <div class="collapse navbar-collapse">
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Create New Post</h1>
+        <form method="post" action="/posts" class="mt-4">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter username" name="username" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Write your post" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Submit Post</button>
+        </form>
+    </div>
+</body>
+</html>

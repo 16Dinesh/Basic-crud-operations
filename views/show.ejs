@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/posts">Social Media Posts</a>
+        <div class="collapse navbar-collapse">
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Post Details</h2>
+        <% if (post) { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">@<%= post.username %></h5>
+                    <p class="card-text"><%= post.content %></p>
+                    <p class="card-text"><small class="text-muted">Post ID: <%= post.id %></small></p>
+                </div>
+            </div>
+        <% } else { %>
+            <p>Post not found.</p>
+        <% } %>
+    </div>
+</body>
+</html>
