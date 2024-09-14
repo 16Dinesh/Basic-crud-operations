@@ -16,17 +16,17 @@ let posts = [
     {
         id: uuidv4(),
         username: "Alex",
-        content: "This is the First Post"
+        content: "You can Add, Edit, Delete, Read all the Post"
     },
     {
         id: uuidv4(),
         username: "Zeke",
-        content: "This is the Second Post"
+        content: "On Top There is a Create New Post Button to add"
     },
     {
         id: uuidv4(),
         username: "Tom",
-        content: "This is the Third Post"
+        content: "Basic CURD Operations"
     }
 ];
 
