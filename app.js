@@ -31,22 +31,26 @@ let posts = [
 ];
 
 
-app.get("/posts", (req,res) => {
+// Get all posts
+app.get("/", (req, res) => {
     res.render("index", { posts });
-})
-
-app.get("/posts/new", (req, res) => {
-    res.render("form");
-})
-
-app.post("/posts", (req, res) => {
-    let { username, content } = req.body;
-    let id = uuidv4();
-    posts.push({ id, username, content }); 
-    res.redirect("/posts");
 });
 
-app.get("/posts/:id", (req, res) => {
+// Show form for creating new post
+app.get("/new", (req, res) => {
+    res.render("form");
+});
+
+// Create a new post
+app.post("/", (req, res) => {
+    let { username, content } = req.body;
+    let id = uuidv4();
+    posts.push({ id, username, content });
+    res.redirect("/");
+});
+
+// Show a single post
+app.get("/:id", (req, res) => {
     let { id } = req.params;
     let post = posts.find((p) => id === p.id);
     if (!post) {
@@ -55,30 +59,37 @@ app.get("/posts/:id", (req, res) => {
     res.render("show", { post });
 });
 
-
-app.patch("/posts/:id", (req,res) => {
+// Edit a post
+app.patch("/:id", (req, res) => {
     let { id } = req.params;
     let newContent = req.body.content;
     let post = posts.find((p) => id === p.id);
+    if (!post) {
+        return res.status(404).send('Post not found');
+    }
     post.content = newContent;
-    res.redirect("/posts")
-})
+    res.redirect("/");
+});
 
-app.get("/posts/:id/edit", (req ,res) => {
+// Show form to edit a post
+app.get("/:id/edit", (req, res) => {
     let { id } = req.params;
     let post = posts.find((p) => id === p.id);
-    res.render("edit" , {post});
-})
-  
-app.delete("/posts/:id/", (req , res) => {
+    if (!post) {
+        return res.status(404).send('Post not found');
+    }
+    res.render("edit", { post });
+});
+
+// Delete a post
+app.delete("/:id", (req, res) => {
     let { id } = req.params;
     posts = posts.filter((p) => id !== p.id);
-    res.redirect("/posts")
-})
-  
+    res.redirect("/");
+});
 
-
+// Start the server
 const PORT = 3000;
-app.listen(PORT, ()=> {
-    console.log(`Server is running on http://localhost:${PORT}/posts`)
-})
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+}); 
